@@ -12,22 +12,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.devsuperior.Portiforio.entities.Sale;
 import com.devsuperior.Portiforio.services.SaleService;
-
 @RestController
 @RequestMapping(value = "/sales")
 public class SaleController {
-
 	@Autowired
 	private SaleService service;
 
 	@GetMapping
-	public List<Sale> findSales() {
-		return service.findSales();
-	}
-
-	public Page<Sale> findSales(
-			@RequestParam(value = "minDate", defaultValue = "") String minDate,
-			@RequestParam(value = "maxDate", defaultValue = "") String maxDate,
+public Page<Sale> findSales(
+			@RequestParam(value="minDate", defaultValue = "") String minDate, 
+			@RequestParam(value="maxDate", defaultValue = "") String maxDate, 
 			Pageable pageable) {
 		return service.findSales(minDate, maxDate, pageable);
 	}
